@@ -9,9 +9,21 @@ class Mkmicin implements ButtonAction{
   }
 }
 
+class Killmicin implements ButtonAction{
+  void doStuff(){
+    osc.send("/kill", new Object[]{"mic1"}, oscdest);
+  }
+}
+
 class Mkout implements ButtonAction{
   void doStuff(){
     osc.send("/mksoundout", new Object[]{"out1", 0}, oscdest);
+  }
+}
+
+class Killout implements ButtonAction{
+  void doStuff(){
+    osc.send("/kill", new Object[]{"out1"}, oscdest);
   }
 }
 

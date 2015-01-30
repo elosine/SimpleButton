@@ -1,6 +1,10 @@
 /*
-Add Label
- Make a toggle possibility
+4 DSP banks with all available dsp
+      toggles that shut off the others in the bank - one effect at a time
+A thru button in each bank on by default
+Adapt this to the more robust dsp framework
+     get rid of the bullshit controlp5
+     presets look at timelines
  
  */
 
@@ -12,16 +16,21 @@ NetAddress oscdest;
 Push b1, b2;
 Mkmicin mkmicin;
 Mkout mkout;
+Killmicin killmicin;
+Killout killout;
+PFont liGothicMed10;
 
 void setup() {
   size(500, 500);
-
   osc = new OscP5(this, 12321);
   oscdest = new NetAddress("127.0.0.1", 57120);
+  liGothicMed10 = loadFont("LiGothicMed-10.vlw");
   mkmicin = new Mkmicin();
   mkout = new Mkout();
-  b1 = new Push(100, 100, 50, 50, mkmicin);
-  b2 = new Push(250, 150, 30, 30, mkout);
+  killmicin = new Killmicin();
+  killout = new Killout();
+  b1 = new Push(20, 20, 460, 40, mkmicin, killmicin, true, "Mic1");
+  b2 = new Push(20, height-60, 460, 40, mkout, killout, true, "Out1");
 }
 
 void draw() {
@@ -38,5 +47,9 @@ void mousePressed() {
 void mouseReleased() {
   b1.msrel();
   b2.msrel();
+}
+void mouseClicked(){
+  b1.msclk();
+  b2.msclk();
 }
 
