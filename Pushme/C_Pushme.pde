@@ -214,6 +214,8 @@ class PushSet {
       if ( inst.id.equals(id) ) inst.turnoff();
     }
   } //end turnoff method
+
+  
   /////////////////////////
 } //end class set class///
 /////////////////////////
@@ -221,8 +223,8 @@ class PushSet {
 
 // DECLARE/INITIALIZE CLASS SET
 int numdsp = 5;
-PushBank pb;
-String[] dsplbls = {"ringmod", "grain", "delay", "flanger", "impulseverb"};
+PushBank pb1;
+String[] dsplbls = new String[0];
 class PushBank {
   int amt, orientation, coord;
   String[] lbl;
