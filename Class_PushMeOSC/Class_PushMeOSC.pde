@@ -18,7 +18,7 @@ void setup() {
   monaco13 = loadFont("Monaco-13.vlw");
   textFont(monaco13);
 
-  path = sketchPath("data/guidata.txt");
+  path = sketchPath("guidata.txt");
   file = new File(path);
   
 

@@ -57,8 +57,9 @@ class PushMeOSC {
 
     //DRAW LABEL
     textAlign(CENTER, CENTER);
+    rectMode(CENTER);
     fill(0);
-    text(id, m, c);
+    text(id, m, c, w-6, h-6);
 
     if (edit==1) {
       //Resize box

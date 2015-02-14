@@ -1,2 +1,0 @@
-b1	50	50	50	50	1	/go	/stop	limegreen	you#say#yes	I#say#go#go#go
-b2	150	200	100	30	0	/go	/stop	dodgerblue	fds#dd#ddd	123#ssdgey#go#go#go
