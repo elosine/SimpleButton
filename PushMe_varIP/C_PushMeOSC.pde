@@ -8,6 +8,8 @@ class PushMeOSC {
   String msgonadr, msgoffadr;
   String[] msgonargs, msgoffargs;
   String dclr;
+  int ipnum;
+  String kee;
 
   //class variables
   int r, b, m, c;
@@ -18,10 +20,13 @@ class PushMeOSC {
   color violetred = color(208, 32, 144);
   int togswitch = 0;
   int edit = 0;
+  NetAddress nadr;
 
   PushMeOSC(String _id, int _l, int _t, int _w, int _h, 
   int _toggle, String _msgonadr, 
-  String _msgoffadr, String _dclr, String[] _msgonargs, String[] _msgoffargs ) {
+  String _msgoffadr, String _dclr, 
+  String[] _msgonargs, String[] _msgoffargs, int aipnum, 
+  String akee) {
     id = _id;
     l = _l;
     t = _t;
@@ -33,6 +38,10 @@ class PushMeOSC {
     msgoffadr = _msgoffadr;
     msgoffargs = _msgoffargs;
     dclr = _dclr;
+    ipnum = aipnum;
+    kee = akee;
+
+    nadr = ips.get(ipnum);
 
     r = l+w;
     b = t+h;
@@ -136,6 +145,24 @@ class PushMeOSC {
     if (key == 'e') {
       edit = (edit +1)%2;
     }
+    if (!kee.equals("zz")) {
+      if (kee.equals(str(key))) {
+        if (toggle==1) {
+          //action when turning toggle on
+          if (togswitch==0) {
+            onmsg();
+          }
+          //action when turning toggle off
+          if (togswitch==1) {
+            offmsg();
+          }
+        }
+        //
+        else {
+          onmsg();
+        }
+      }
+    }
   }
 
   void onmsg() {
@@ -143,7 +170,7 @@ class PushMeOSC {
     for (int i=0; i<msgonargs.length; i++) {
       msgtemp.add(msgonargs[i]);
     }
-    osc.send(msgtemp, sc);
+    osc.send(msgtemp, nadr);
   }
 
   void offmsg() {
@@ -151,7 +178,7 @@ class PushMeOSC {
     for (int i=0; i<msgoffargs.length; i++) {
       msgtemp2.add(msgoffargs[i]);
     }
-    osc.send(msgtemp2, sc);
+    osc.send(msgtemp2, nadr);
   }
 
   ////
@@ -164,10 +191,11 @@ class PushMeOSCset {
 
   void mk(String _id, int _l, int _t, int _w, int _h, 
   int _toggle, String _msgonadr, 
-  String _msgoffadr, String dclr, String[] _msgonargs, String[] _msgoffargs) {
+  String _msgoffadr, String dclr, 
+  String[] _msgonargs, String[] _msgoffargs, int ipnum, String kee) {
     cset.add( new PushMeOSC(_id, _l, _t, _w, _h, 
     _toggle, _msgonadr, 
-    _msgoffadr, dclr, _msgonargs, _msgoffargs) );
+    _msgoffadr, dclr, _msgonargs, _msgoffargs, ipnum, kee) );
   }
 
   void drw() {
