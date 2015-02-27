@@ -5,7 +5,6 @@ class PushMeOSC {
   String id;
   int l, t, w, h;
   int toggle;
-  String msgonadr, msgoffadr;
   String[] msgonargs, msgoffargs;
   String dclr;
   int ipnum;
@@ -23,23 +22,20 @@ class PushMeOSC {
   NetAddress nadr;
 
   PushMeOSC(String _id, int _l, int _t, int _w, int _h, 
-  int _toggle, String _msgonadr, 
-  String _msgoffadr, String _dclr, 
-  String[] _msgonargs, String[] _msgoffargs, int aipnum, 
-  String akee) {
+  int _toggle, String _dclr, int aipnum, String akee, 
+  String[] _msgonargs, String[] _msgoffargs ) {
     id = _id;
     l = _l;
     t = _t;
     w = _w;
     h = _h;
     toggle = _toggle;
-    msgonadr = _msgonadr;
-    msgonargs = _msgonargs;
-    msgoffadr = _msgoffadr;
-    msgoffargs = _msgoffargs;
     dclr = _dclr;
     ipnum = aipnum;
     kee = akee;
+
+    msgonargs = split(_msgonargs, '$');
+    msgoffargs = split(_msgoffargs, $);
 
     nadr = ips.get(ipnum);
 
@@ -166,19 +162,29 @@ class PushMeOSC {
   }
 
   void onmsg() {
-    OscMessage msgtemp = new OscMessage(msgonadr);
     for (int i=0; i<msgonargs.length; i++) {
-      msgtemp.add(msgonargs[i]);
+      String[] a1 = split(msgonargs[i], "#");
+      String msgonadr = a1[0];
+      String[]a2 = subset(a1, 1, a1.length-1);
+      OscMessage msgtemp = new OscMessage(msgonadr);
+      for (int j=0; j<a2.length; j++) {
+        msgtemp.add(a2[j]);
+      }
+      osc.send(msgtemp, nadr);
     }
-    osc.send(msgtemp, nadr);
   }
 
   void offmsg() {
-    OscMessage msgtemp2 = new OscMessage(msgoffadr);
     for (int i=0; i<msgoffargs.length; i++) {
-      msgtemp2.add(msgoffargs[i]);
+      String[] a1 = split(msgoffargs[i], "#");
+      String msgoffadr = a1[0];
+      String[]a2 = subset(a1, 1, a1.length-1);
+      OscMessage msgtemp = new OscMessage(msgoffadr);
+      for (int j=0; j<a2.length; j++) {
+        msgtemp.add(a2[j]);
+      }
+      osc.send(msgtemp, nadr);
     }
-    osc.send(msgtemp2, nadr);
   }
 
   ////
@@ -190,12 +196,10 @@ class PushMeOSCset {
   ArrayList<PushMeOSC> cset = new ArrayList<PushMeOSC>();
 
   void mk(String _id, int _l, int _t, int _w, int _h, 
-  int _toggle, String _msgonadr, 
-  String _msgoffadr, String dclr, 
-  String[] _msgonargs, String[] _msgoffargs, int ipnum, String kee) {
-    cset.add( new PushMeOSC(_id, _l, _t, _w, _h, 
-    _toggle, _msgonadr, 
-    _msgoffadr, dclr, _msgonargs, _msgoffargs, ipnum, kee) );
+  int _toggle, String _dclr, int aipnum, String akee, 
+  String[] _msgonargs, String[] _msgoffargs) {
+    cset.add( new PushMeOSC(_id, _l, _t, _w, _h, _dclr, aipnum, akee, 
+    _msgonargs, _msgoffargs) );
   }
 
   void drw() {
