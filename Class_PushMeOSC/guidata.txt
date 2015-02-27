@@ -1,9 +1,2 @@
-Use the	15	15	150	150	1	/go	/stop	limegreen	you#say#yes	I#say#go#go#go
-guidata.txt file	175	15	150	150	0	/go	/stop	dodgerblue	fds#dd#ddd	123#ssdgey#go#go#go
-to change the 	335	15	150	150	0	/go	/stop	peacock	fds#dd#ddd	123#ssdgey#go#go#go
-parameters	15	175	150	150	1	/go	/stop	goldenrod	you#say#yes	I#say#go#go#go
-of each	175	175	150	150	0	/go	/stop	sunshine	fds#dd#ddd	123#ssdgey#go#go#go
-of these buttons 	335	175	150	150	0	/go	/stop	papaya	fds#dd#ddd	123#ssdgey#go#go#go
-change	15	335	150	150	1	/go	/stop	nicegreen	you#say#yes	I#say#go#go#go
-size, amount, location	175	335	150	150	0	/go	/stop	fig	fds#dd#ddd	123#ssdgey#go#go#go
-and osc message + other things 	335	335	150	150	0	/go	/stop	mint	fds#dd#ddd	123#ssdgey#go#go#go
+Mk FreeVerb	15	15	40	40	1	/mkfx	/killfx	limegreen	mysyn#fv#damp#0.02#gate#1#mix#1#room#7	mysyn
+Tog FreeVerb	65	15	65	40	1	/togfx	/togfx	orange	mysyn#1	mysyn#0
