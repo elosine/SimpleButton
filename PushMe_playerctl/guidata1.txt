@@ -1,0 +1,6 @@
+225	225
+UP (s)	80	10	65	65	0	orange	0	s	/adjvel#1#0.0#-300.0	/
+STOP (a)	80	80	65	65	0	red	0	a	/setvels#1#0.0#0.0	/
+DOWN (x)	80	150	65	65	0	orange	0	x	/adjvel#1#0.0#300.0	/
+LEFT (z)	10	80	65	65	0	orange	0	z	/adjvel#1#-300.0#0.0	/
+RIGHT (z)	150	80	65	65	0	orange	0	c	/adjvel#1#300.0#0.0	/

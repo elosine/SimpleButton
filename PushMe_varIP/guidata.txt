@@ -1,2 +1,1 @@
-MV1	15	15	40	40	0	/adjvel	/	limegreen	0#700#700	0	0	a
-STP1	15	75	40	40	0	/setvels	/	sunshine	0#0#0	0	0	zz
+TEST1	15	15	60	60	1	dodgerblue	0	a	/testy#1#can#you#feel$/t2#the#love#tonight	/testy2#it#is$/t3#where#we#are
